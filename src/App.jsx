@@ -1,6 +1,6 @@
 import axios from "axios";
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -8,6 +8,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [location, setLocation] = useState({});
   const [mapPic, setMap] = useState("");
+  const [zoom, setZoom] = useState(13);
 
   function handleChange(event) {
     setSearch(event.target.value);
@@ -18,13 +19,25 @@ function App() {
     const API = `https://eu1.locationiq.com/v1/search?q=${search}&key=${API_KEY}&format=json`;
     const loc = await axios.get(API);
     setLocation(loc.data[0]);
+    getMap(loc.data[0].lat, loc.data[0].lon, zoom);
+  }
 
-    const lat = loc.data[0].lat;
-    const lon = loc.data[0].lon;
-
-    const mapData = `https://maps.locationiq.com/v3/staticmap?key=${API_KEY}&center=${lat},${lon}&zoom=13&size=500x300&format=png&maptype=roadmap`;
+  function getMap(lat, lon, zoom){
+    const mapData = `https://maps.locationiq.com/v3/staticmap?key=${API_KEY}&center=${lat},${lon}&zoom=${zoom}&size=500x300&format=png&maptype=roadmap`;
     setMap(mapData);
   }
+
+  function zoomIn(){
+    setZoom(zoom + 1);
+  }
+
+  function zoomOut(){
+    setZoom(zoom - 1);
+  }
+
+  useEffect(() => {
+    getMap(location.lat, location.lon, zoom);
+  }, [zoom, location.lat, location.lon]);
 
   return (
     <main>
@@ -46,10 +59,12 @@ function App() {
       </form>
 
       <div className="results">
+        <img id="map" src={mapPic} />
         <h2>{location.display_name}</h2>
         <h3>latitude: {location.lat}</h3>
         <h3>longitute: {location.lon}</h3>
-        <img src={mapPic} />
+        <button onClick={zoomIn}>+ zoom</button>
+        <button onClick={zoomOut}>- zoom</button>
       </div>
     </main>
   );
