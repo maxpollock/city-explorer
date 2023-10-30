@@ -1,0 +1,35 @@
+body {
+  width: 100vw;
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+  font-family: monospace;
+}
+
+main {
+  text-align: center;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+form,
+input,
+button {
+  font-family: monospace;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+.title h2 {
+  font-size: 1.1rem;
+}
+
+.results h3 {
+  margin: 1.5rem;
+}

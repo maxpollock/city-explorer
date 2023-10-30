@@ -10,7 +10,7 @@ function App() {
 
   function handleChange(event) {
     setSearch(event.target.value);
-    console.log(search)
+    console.log(search);
   }
 
   async function getLocation(event) {
@@ -21,7 +21,11 @@ function App() {
   }
 
   return (
-    <>
+    <main>
+      <div className="title">
+        <h1>city explorer</h1>
+        <h2>search for a city to find out more</h2>
+      </div>
       <form onClick={getLocation}>
         <input onChange={handleChange} type="text" placeholder="City Name" />
         <button>Explore!</button>
@@ -29,10 +33,10 @@ function App() {
 
       <div className="results">
         <h2>{location.display_name}</h2>
-        <h3>{location.lat}</h3>
-        <h3>{location.lon}</h3>
+        <h3>latitude: {location.lat}</h3>
+        <h3>longitute: {location.lon}</h3>
       </div>
-    </>
+    </main>
   );
 }
 
