@@ -22,7 +22,7 @@ function App() {
     const lat = loc.data[0].lat;
     const lon = loc.data[0].lon;
 
-    const mapData = `https://maps.locationiq.com/v3/staticmap?key=${API_KEY}&center=${lat},${lon}zoom=2&size=500x300&format=png&maptype=roadmap`;
+    const mapData = `https://maps.locationiq.com/v3/staticmap?key=${API_KEY}&center=${lat},${lon}&zoom=13&size=500x300&format=png&maptype=roadmap`;
     setMap(mapData);
   }
 
