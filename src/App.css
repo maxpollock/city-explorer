@@ -6,6 +6,7 @@ body {
   align-items: center;
   margin: 2rem auto;
   font-family: monospace;
+  background-color: rgb(252, 243, 232);
 }
 
 main {
@@ -28,6 +29,10 @@ h1 {
 
 .title h2 {
   font-size: 1.1rem;
+}
+
+.title img{
+  width: 40px;
 }
 
 .results h3 {

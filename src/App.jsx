@@ -23,7 +23,7 @@ function App() {
   return (
     <main>
       <div className="title">
-        <h1>city explorer</h1>
+        <h1>city explorer<span><img src="https://img.icons8.com/doodle/48/building--v1.png" alt="house" /></span></h1>
         <h2>search for a city to find out more</h2>
       </div>
       <form onClick={getLocation}>
