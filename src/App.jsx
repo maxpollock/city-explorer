@@ -9,6 +9,7 @@ function App() {
   const [location, setLocation] = useState({});
   const [mapPic, setMap] = useState("");
   const [zoom, setZoom] = useState(13);
+  const [errorMessage, setErrorMessage] = useState("");
 
   function handleChange(event) {
     setSearch(event.target.value);
@@ -22,22 +23,29 @@ function App() {
     getMap(loc.data[0].lat, loc.data[0].lon, zoom);
   }
 
-  function getMap(lat, lon, zoom){
+  function getMap(lat, lon, zoom) {
     const mapData = `https://maps.locationiq.com/v3/staticmap?key=${API_KEY}&center=${lat},${lon}&zoom=${zoom}&size=500x300&format=png&maptype=roadmap`;
     setMap(mapData);
   }
 
-  function zoomIn(){
+  function zoomIn() {
     setZoom(zoom + 1);
   }
 
-  function zoomOut(){
+  function zoomOut() {
     setZoom(zoom - 1);
   }
 
   useEffect(() => {
     getMap(location.lat, location.lon, zoom);
   }, [zoom, location.lat, location.lon]);
+
+
+  function checkInput(){
+    if (!(isNaN(search))){
+      setErrorMessage("Please enter a valid city name.")
+    }
+  }
 
   return (
     <main>
@@ -55,7 +63,8 @@ function App() {
       </div>
       <form onClick={getLocation}>
         <input onChange={handleChange} type="text" placeholder="City Name" />
-        <button>Explore!</button>
+        <button onClick={checkInput}>Explore!</button>
+        {!(isNaN(search)) && <p>{errorMessage}</p>}
       </form>
 
       <div className="results">
