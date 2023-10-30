@@ -7,10 +7,10 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 function App() {
   const [search, setSearch] = useState("");
   const [location, setLocation] = useState({});
+  const [mapPic, setMap] = useState("");
 
   function handleChange(event) {
     setSearch(event.target.value);
-    console.log(search);
   }
 
   async function getLocation(event) {
@@ -18,6 +18,12 @@ function App() {
     const API = `https://eu1.locationiq.com/v1/search?q=${search}&key=${API_KEY}&format=json`;
     const loc = await axios.get(API);
     setLocation(loc.data[0]);
+
+    const lat = loc.data[0].lat;
+    const lon = loc.data[0].lon;
+
+    const mapData = `https://maps.locationiq.com/v3/staticmap?key=${API_KEY}&center=${lat},${lon}zoom=2&size=500x300&format=png&maptype=roadmap`;
+    setMap(mapData);
   }
 
   return (
@@ -43,6 +49,7 @@ function App() {
         <h2>{location.display_name}</h2>
         <h3>latitude: {location.lat}</h3>
         <h3>longitute: {location.lon}</h3>
+        <img src={mapPic} />
       </div>
     </main>
   );
