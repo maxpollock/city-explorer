@@ -13,6 +13,7 @@ function App() {
 
   function handleChange(event) {
     setSearch(event.target.value);
+    checkInput();
   }
 
   async function getLocation(event) {
@@ -40,10 +41,9 @@ function App() {
     getMap(location.lat, location.lon, zoom);
   }, [zoom, location.lat, location.lon]);
 
-
-  function checkInput(){
-    if (!(isNaN(search))){
-      setErrorMessage("Please enter a valid city name.")
+  function checkInput() {
+    if (!isNaN(search)) {
+      setErrorMessage("Please enter a valid city name.");
     }
   }
 
@@ -64,7 +64,7 @@ function App() {
       <form onClick={getLocation}>
         <input onChange={handleChange} type="text" placeholder="City Name" />
         <button onClick={checkInput}>Explore!</button>
-        {!(isNaN(search)) && <p>{errorMessage}</p>}
+        {!isNaN(search) && <p>{errorMessage}</p>}
       </form>
 
       <div className="results">
