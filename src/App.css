@@ -1,6 +1,6 @@
 body {
   width: 100vw;
-  height: 90vh;
+  height: 75vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,10 +11,10 @@ body {
 
 main {
   text-align: center;
-  height: 800px;
+  height: 700px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 form,

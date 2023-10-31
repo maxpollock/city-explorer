@@ -67,14 +67,16 @@ function App() {
         {!isNaN(search) && <p>{errorMessage}</p>}
       </form>
 
-      <div className="results">
-        <img id="map" src={mapPic} />
-        <h2>{location.display_name}</h2>
-        <h3>latitude: {location.lat}</h3>
-        <h3>longitute: {location.lon}</h3>
-        <button onClick={zoomIn}>+ zoom</button>
-        <button onClick={zoomOut}>- zoom</button>
-      </div>
+      {location.lat && (
+        <div className="results">
+          <img id="map" src={mapPic} />
+          <h2>{location.display_name}</h2>
+          <h3>latitude: {location.lat}</h3>
+          <h3>longitute: {location.lon}</h3>
+          <button onClick={zoomIn}>+ zoom</button>
+          <button onClick={zoomOut}>- zoom</button>
+        </div>
+      )}
     </main>
   );
 }
