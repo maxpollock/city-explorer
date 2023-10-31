@@ -6,7 +6,7 @@ export default function RenderWeather({ weather }) {
     <div className="resultdiv">
       {weather.map((data) => (
         <div key={data.date}>
-          <div className="results">
+          <div className="resultsweath">
             <h4>{data.date}</h4>
             <h4>{data.description}</h4>
           </div>

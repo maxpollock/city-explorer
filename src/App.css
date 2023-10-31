@@ -55,3 +55,9 @@ h1 {
   margin: 0 auto;
   text-align: center;
 }
+
+.resultsweath {
+  border: 1px dotted black;
+  border-radius: 5px;
+  padding: 2px 25px;
+}

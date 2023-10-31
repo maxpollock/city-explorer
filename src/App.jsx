@@ -11,7 +11,7 @@ function App() {
   const [mapPic, setMap] = useState("");
   const [zoom, setZoom] = useState(13);
   const [errorMessage, setErrorMessage] = useState("");
-  const [weather, setWeather] = useState([])
+  const [weather, setWeather] = useState([]);
 
   function handleChange(event) {
     setSearch(event.target.value);
@@ -50,11 +50,10 @@ function App() {
     }
   }
 
-
-  async function getWeather(lat, lon){
-    const API = `http://localhost:8080/weather?lat=${lat}&lon=${lon}`
-    const res = await axios.get(API)
-    setWeather(res.data)
+  async function getWeather(lat, lon) {
+    const API = `http://localhost:8080/weather?lat=${lat}&lon=${lon}`;
+    const res = await axios.get(API);
+    setWeather(res.data);
   }
 
   return (
@@ -78,18 +77,18 @@ function App() {
       </form>
 
       {location.lat && (
-        <div className="results">
-          <img id="map" src={mapPic} />
-          <h2>{location.display_name}</h2>
-          <button onClick={zoomIn}>+ zoom</button>
-          <button onClick={zoomOut}>- zoom</button>
-          <h3>latitude: {location.lat}</h3>
-          <h3>longitute: {location.lon}</h3>
-        </div>
+        <>
+          <div className="results">
+            <img id="map" src={mapPic} />
+            <h2>{location.display_name}</h2>
+            <button onClick={zoomIn}>+ zoom</button>
+            <button onClick={zoomOut}>- zoom</button>
+            <h3>latitude: {location.lat}</h3>
+            <h3>longitute: {location.lon}</h3>
+          </div>
+          <RenderWeather weather={weather} />
+        </>
       )}
-
-      < RenderWeather weather={weather} />
-
     </main>
   );
 }
