@@ -1,6 +1,7 @@
 import axios from "axios";
 import "./App.css";
 import { useState, useEffect } from "react";
+import RenderWeather from "./component/Weather";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -10,6 +11,7 @@ function App() {
   const [mapPic, setMap] = useState("");
   const [zoom, setZoom] = useState(13);
   const [errorMessage, setErrorMessage] = useState("");
+  const [weather, setWeather] = useState([])
 
   function handleChange(event) {
     setSearch(event.target.value);
@@ -22,6 +24,7 @@ function App() {
     const loc = await axios.get(API);
     setLocation(loc.data[0]);
     getMap(loc.data[0].lat, loc.data[0].lon, zoom);
+    getWeather(loc.data[0].lat, loc.data[0].lon);
   }
 
   function getMap(lat, lon, zoom) {
@@ -45,6 +48,13 @@ function App() {
     if (!isNaN(search)) {
       setErrorMessage("Please enter a valid city name.");
     }
+  }
+
+
+  async function getWeather(lat, lon){
+    const API = `http://localhost:8080/weather?lat=${lat}&lon=${lon}`
+    const res = await axios.get(API)
+    setWeather(res.data)
   }
 
   return (
@@ -71,12 +81,15 @@ function App() {
         <div className="results">
           <img id="map" src={mapPic} />
           <h2>{location.display_name}</h2>
-          <h3>latitude: {location.lat}</h3>
-          <h3>longitute: {location.lon}</h3>
           <button onClick={zoomIn}>+ zoom</button>
           <button onClick={zoomOut}>- zoom</button>
+          <h3>latitude: {location.lat}</h3>
+          <h3>longitute: {location.lon}</h3>
         </div>
       )}
+
+      < RenderWeather weather={weather} />
+
     </main>
   );
 }

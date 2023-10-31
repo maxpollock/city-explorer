@@ -1,6 +1,6 @@
 body {
   width: 100vw;
-  height: 75vh;
+  height: 85vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +11,7 @@ body {
 
 main {
   text-align: center;
-  height: 700px;
+  height: 900px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -41,4 +41,17 @@ h1 {
 
 #map {
   border: 1px dotted black;
+}
+
+.resultdiv {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  align-items: center;
+}
+
+#weathertitle {
+  margin: 0 auto;
+  text-align: center;
 }
