@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import RenderWeather from "./component/Weather";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
+const WEATHER_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
 function App() {
   const [search, setSearch] = useState("");
@@ -51,7 +52,7 @@ function App() {
   }
 
   async function getWeather(lat, lon) {
-    const API = `http://localhost:8080/weather?lat=${lat}&lon=${lon}`;
+    const API = `http://localhost:8080/weather?key=${WEATHER_KEY}&lat=${lat}&lon=${lon}`;
     const res = await axios.get(API);
     setWeather(res.data);
   }
