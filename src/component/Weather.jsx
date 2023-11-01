@@ -8,6 +8,7 @@ export default function RenderWeather({ weather }) {
             <div className="resultsweath">
               <h4>{data.date}</h4>
               <h4>{data.description}</h4>
+              <h4>Temp: {data.temp}*C</h4>
             </div>
           </div>
         ))}
