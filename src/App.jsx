@@ -92,8 +92,6 @@ function App() {
               <h2>{location.display_name}</h2>
               <button onClick={zoomIn}>+ zoom</button>
               <button onClick={zoomOut}>- zoom</button>
-              <h3>latitude: {location.lat}</h3>
-              <h3>longitute: {location.lon}</h3>
             </div>
 
             <div className="results-container">
