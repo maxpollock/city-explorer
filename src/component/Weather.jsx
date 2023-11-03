@@ -6,8 +6,8 @@ export default function RenderWeather({ weather }) {
         {weather.map((data) => (
           <div key={data.date}>
             <div className="resultsweath">
-              <img src={`./icons/${data.icon}.png`}/>
-              <h4>{data.description}</h4>
+              <img id="icon" src={`./icons/${data.icon}.png`}/>
+              <h4 id="desc">{data.description}</h4>
               <h4>Temp: {data.temp}*C</h4>
             </div>
           </div>

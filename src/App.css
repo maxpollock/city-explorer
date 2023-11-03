@@ -73,6 +73,13 @@ h1 {
   width: 33%;
 }
 
+#icon {
+  width: 90px;
+}
+#desc {
+  margin-top: 0;
+}
+
 @media only screen and (max-width: 1436px) {
   .results-container {
     min-width: 180px;
