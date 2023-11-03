@@ -122,4 +122,11 @@ h1 {
   #map {
     width: 335px
   }
+  h1 {
+    font-size: 1.9rem;
+  }
+  
+  .title h2 {
+    font-size: .8rem;
+  }
 }
