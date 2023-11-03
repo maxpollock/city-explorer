@@ -53,56 +53,55 @@ function App() {
   }
 
   async function getWeather(lat, lon) {
-    const API = `http://localhost:8080/weather?key=${WEATHER_KEY}&lat=${lat}&lon=${lon}`;
+    const API = `https://city-explorer-i8ng.onrender.com/weather?key=${WEATHER_KEY}&lat=${lat}&lon=${lon}`;
     const res = await axios.get(API);
     setWeather(res.data);
   }
 
   return (
     <>
-<header>
-      <div className="title">
-        <h1>
-          city explorer
-          <span>
-            <img
-              src="https://img.icons8.com/doodle/48/building--v1.png"
-              alt="house"
-            />
-          </span>
-        </h1>
-        <h2>search for a city to find out more</h2>
-      </div>
+      <header>
+        <div className="title">
+          <h1>
+            city explorer
+            <span>
+              <img
+                src="https://img.icons8.com/doodle/48/building--v1.png"
+                alt="house"
+              />
+            </span>
+          </h1>
+          <h2>search for a city to find out more</h2>
+        </div>
 
-      <form onClick={getLocation}>
-        <input onChange={handleChange} type="text" placeholder="City Name" />
-        <button onClick={checkInput}>Explore!</button>
-        {!isNaN(search) && <p>{errorMessage}</p>}
-      </form>
+        <form onClick={getLocation}>
+          <input onChange={handleChange} type="text" placeholder="City Name" />
+          <button onClick={checkInput}>Explore!</button>
+          {!isNaN(search) && <p>{errorMessage}</p>}
+        </form>
       </header>
       <main>
-      {location.lat && (
-        <>
-        <div className="results-container"> 
-          <RenderWeather weather={weather} />
-          </div>
+        {location.lat && (
+          <>
+            <div className="results-container">
+              <RenderWeather weather={weather} />
+            </div>
 
-          <div className="results">
-            <img id="map" src={mapPic} />
-            <h2>{location.display_name}</h2>
-            <button onClick={zoomIn}>+ zoom</button>
-            <button onClick={zoomOut}>- zoom</button>
-            <h3>latitude: {location.lat}</h3>
-            <h3>longitute: {location.lon}</h3>
-          </div>
+            <div className="results">
+              <img id="map" src={mapPic} />
+              <h2>{location.display_name}</h2>
+              <button onClick={zoomIn}>+ zoom</button>
+              <button onClick={zoomOut}>- zoom</button>
+              <h3>latitude: {location.lat}</h3>
+              <h3>longitute: {location.lon}</h3>
+            </div>
 
-        
-          <div className="results-container">
-          <RenderMovie weather={weather} /></div>
-
-        </>
-      )}
-    </main>
+            <div className="results-container">
+              <RenderMovie weather={weather} />
+            </div>
+          </>
+        )}
+      </main>
     </>
   );
 }
