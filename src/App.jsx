@@ -2,6 +2,7 @@ import axios from "axios";
 import "./App.css";
 import { useState, useEffect } from "react";
 import RenderWeather from "./component/Weather";
+import RenderMovie from "./component/Movie";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const WEATHER_KEY = import.meta.env.VITE_WEATHER_API_KEY;
@@ -58,7 +59,8 @@ function App() {
   }
 
   return (
-    <main>
+    <>
+<header>
       <div className="title">
         <h1>
           city explorer
@@ -71,14 +73,20 @@ function App() {
         </h1>
         <h2>search for a city to find out more</h2>
       </div>
+
       <form onClick={getLocation}>
         <input onChange={handleChange} type="text" placeholder="City Name" />
         <button onClick={checkInput}>Explore!</button>
         {!isNaN(search) && <p>{errorMessage}</p>}
       </form>
-
+      </header>
+      <main>
       {location.lat && (
         <>
+        <div className="results-container"> 
+          <RenderWeather weather={weather} />
+          </div>
+
           <div className="results">
             <img id="map" src={mapPic} />
             <h2>{location.display_name}</h2>
@@ -87,10 +95,15 @@ function App() {
             <h3>latitude: {location.lat}</h3>
             <h3>longitute: {location.lon}</h3>
           </div>
-          <RenderWeather weather={weather} />
+
+        
+          <div className="results-container">
+          <RenderMovie weather={weather} /></div>
+
         </>
       )}
     </main>
+    </>
   );
 }
 
